@@ -1,4 +1,4 @@
-module github.com/upbound/upjet-provider-template
+module github.com/trois-six/provider-keycloak
 
 go 1.19
 

@@ -13,7 +13,7 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "template.upbound.io"
+	Group   = "keycloak.crd.alt"
 	Version = "v1beta1"
 )
 

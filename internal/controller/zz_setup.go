@@ -9,16 +9,18 @@ import (
 
 	"github.com/crossplane/upjet/pkg/controller"
 
-	resource "github.com/upbound/upjet-provider-template/internal/controller/null/resource"
-	providerconfig "github.com/upbound/upjet-provider-template/internal/controller/providerconfig"
+	realm "github.com/trois-six/provider-keycloak/internal/controller/keycloak/realm"
+	providerconfig "github.com/trois-six/provider-keycloak/internal/controller/providerconfig"
+	events "github.com/trois-six/provider-keycloak/internal/controller/realm/events"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
-		resource.Setup,
+		realm.Setup,
 		providerconfig.Setup,
+		events.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

@@ -15,7 +15,7 @@ import (
 
 	"github.com/crossplane/upjet/pkg/terraform"
 
-	"github.com/upbound/upjet-provider-template/apis/v1beta1"
+	"github.com/trois-six/provider-keycloak/apis/v1beta1"
 )
 
 const (
@@ -24,7 +24,21 @@ const (
 	errGetProviderConfig    = "cannot get referenced ProviderConfig"
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
-	errUnmarshalCredentials = "cannot unmarshal template credentials as JSON"
+	errUnmarshalCredentials = "cannot unmarshal keycloak credentials as JSON"
+	// Terraform Provider configuration block keys
+	keyUrl                   = "url"
+	keyBasePath              = "base_path"
+	keyClientId              = "client_id"
+	keyClientSecret          = "client_secret"
+	keyUsername              = "username"
+	keyPassword              = "password"
+	keyRealm                 = "realm"
+	keyInitialLogin          = "initial_login"
+	keyClientTimeout         = "client_timeout"
+	keyTLSInsecureSkipVerify = "tls_insecure_skip_verify"
+	keyRootCACertificate     = "root_ca_certificate"
+	keyRedHatSSO             = "red_hat_sso"
+	keyAdditionalHeaders     = "additional_headers"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -63,10 +77,50 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 
 		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
+		ps.Configuration = map[string]any{}
+		if v, ok := creds[keyUrl]; ok {
+			ps.Configuration[keyUrl] = v
+		}
+		if v, ok := creds[keyBasePath]; ok {
+			ps.Configuration[keyBasePath] = v
+		}
+		if v, ok := creds[keyClientId]; ok {
+			ps.Configuration[keyClientId] = v
+		}
+		if v, ok := creds[keyClientSecret]; ok {
+			ps.Configuration[keyClientSecret] = v
+		}
+		if v, ok := creds[keyUsername]; ok {
+			ps.Configuration[keyUsername] = v
+		}
+		if v, ok := creds[keyPassword]; ok {
+			ps.Configuration[keyPassword] = v
+		}
+		if v, ok := creds[keyRealm]; ok {
+			ps.Configuration[keyRealm] = v
+		}
+		if v, ok := creds[keyInitialLogin]; ok {
+			ps.Configuration[keyInitialLogin] = v
+		}
+		if v, ok := creds[keyClientTimeout]; ok {
+			ps.Configuration[keyClientTimeout] = v
+		}
+		if v, ok := creds[keyInitialLogin]; ok {
+			ps.Configuration[keyInitialLogin] = v
+		}
+		if v, ok := creds[keyTLSInsecureSkipVerify]; ok {
+			ps.Configuration[keyTLSInsecureSkipVerify] = v
+		}
+		if v, ok := creds[keyRootCACertificate]; ok {
+			ps.Configuration[keyRootCACertificate] = v
+		}
+		if v, ok := creds[keyRedHatSSO]; ok {
+			ps.Configuration[keyRedHatSSO] = v
+		}
+		if v, ok := creds[keyAdditionalHeaders]; ok {
+			ps.Configuration[keyAdditionalHeaders] = v
+		}
+
 		return ps, nil
 	}
 }
