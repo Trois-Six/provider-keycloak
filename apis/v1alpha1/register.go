@@ -13,7 +13,7 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "keycloak.crd.alt"
+	Group   = "keycloak.keycloak.crd.alt"
 	Version = "v1alpha1"
 )
 

@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: realms.keycloak.crd.alt
+  name: realms.keycloak.keycloak.crd.alt
 spec:
-  group: keycloak.crd.alt
+  group: keycloak.keycloak.crd.alt
   names:
     categories:
     - crossplane

@@ -11,6 +11,7 @@ import (
 	ujconfig "github.com/crossplane/upjet/pkg/config"
 
 	"github.com/trois-six/provider-keycloak/config/realm"
+	"github.com/trois-six/provider-keycloak/config/realmKeystoreAESGenerated"
 )
 
 const (
@@ -27,7 +28,7 @@ var providerMetadata string
 // GetProvider returns provider configuration
 func GetProvider() *ujconfig.Provider {
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
-		ujconfig.WithRootGroup("crd.alt"),
+		ujconfig.WithRootGroup("keycloak.crd.alt"),
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithFeaturesPackage("internal/features"),
 		ujconfig.WithDefaultResourceOptions(
@@ -37,6 +38,7 @@ func GetProvider() *ujconfig.Provider {
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		realm.Configure,
+		realmKeystoreAESGenerated.Configure,
 	} {
 		configure(pc)
 	}

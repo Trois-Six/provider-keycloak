@@ -1,4 +1,4 @@
-apiVersion: keycloak.crd.alt/v1alpha1
+apiVersion: keycloak.keycloak.crd.alt/v1alpha1
 kind: Realm
 metadata:
   annotations:

@@ -66,3 +66,63 @@ func (mg *Events) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetails
 func (mg *Events) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
+
+// GetCondition of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetPublishConnectionDetailsTo of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetPublishConnectionDetailsTo of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this RealmKeyStoreAESGenerated.
+func (mg *RealmKeyStoreAESGenerated) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}

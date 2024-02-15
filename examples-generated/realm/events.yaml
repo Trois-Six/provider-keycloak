@@ -1,4 +1,4 @@
-apiVersion: realm.crd.alt/v1alpha1
+apiVersion: realm.keycloak.crd.alt/v1alpha1
 kind: Events
 metadata:
   annotations:
@@ -21,7 +21,7 @@ spec:
 
 ---
 
-apiVersion: keycloak.crd.alt/v1alpha1
+apiVersion: keycloak.keycloak.crd.alt/v1alpha1
 kind: Realm
 metadata:
   annotations:

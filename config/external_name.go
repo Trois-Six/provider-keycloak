@@ -13,6 +13,31 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"keycloak_realm": config.ParameterAsIdentifier("realm"),
 	// This resource currently does not support importing.
 	"keycloak_realm_events": config.IdentifierFromProvider,
+	// Realm keys can be imported using realm name and keystore id, you can find it in web UI.
+	"keycloak_realm_keystore_aes_generated": config.TemplatedStringAsIdentifier("keystore", "{{ .parameters.realm_id }}:{{ .external_name }}"),
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
+	// This resource currently does not support importing.
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

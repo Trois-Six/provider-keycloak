@@ -12,6 +12,7 @@ import (
 	realm "github.com/trois-six/provider-keycloak/internal/controller/keycloak/realm"
 	providerconfig "github.com/trois-six/provider-keycloak/internal/controller/providerconfig"
 	events "github.com/trois-six/provider-keycloak/internal/controller/realm/events"
+	realmkeystoreaesgenerated "github.com/trois-six/provider-keycloak/internal/controller/realm/realmkeystoreaesgenerated"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -21,6 +22,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		realm.Setup,
 		providerconfig.Setup,
 		events.Setup,
+		realmkeystoreaesgenerated.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err
