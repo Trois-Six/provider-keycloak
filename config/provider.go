@@ -11,7 +11,7 @@ import (
 	ujconfig "github.com/crossplane/upjet/pkg/config"
 
 	"github.com/trois-six/provider-keycloak/config/realm"
-	"github.com/trois-six/provider-keycloak/config/realmKeystoreAESGenerated"
+	"github.com/trois-six/provider-keycloak/config/realmkeystoreaesgenerated"
 )
 
 const (
@@ -38,7 +38,7 @@ func GetProvider() *ujconfig.Provider {
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		realm.Configure,
-		realmKeystoreAESGenerated.Configure,
+		realmkeystoreaesgenerated.Configure,
 	} {
 		configure(pc)
 	}

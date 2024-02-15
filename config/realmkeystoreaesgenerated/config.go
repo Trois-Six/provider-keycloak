@@ -1,4 +1,4 @@
-package realmKeystoreAESGenerated
+package realmkeystoreaesgenerated
 
 import "github.com/crossplane/upjet/pkg/config"
 

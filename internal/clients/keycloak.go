@@ -26,9 +26,9 @@ const (
 	errExtractCredentials   = "cannot extract credentials"
 	errUnmarshalCredentials = "cannot unmarshal keycloak credentials as JSON"
 	// Terraform Provider configuration block keys
-	keyUrl                   = "url"
+	keyURL                   = "url"
 	keyBasePath              = "base_path"
-	keyClientId              = "client_id"
+	keyClientID              = "client_id"
 	keyClientSecret          = "client_secret"
 	keyUsername              = "username"
 	keyPassword              = "password"
@@ -78,49 +78,32 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 
 		// Set credentials in Terraform provider configuration.
 		ps.Configuration = map[string]any{}
-		if v, ok := creds[keyUrl]; ok {
-			ps.Configuration[keyUrl] = v
-		}
-		if v, ok := creds[keyBasePath]; ok {
-			ps.Configuration[keyBasePath] = v
-		}
-		if v, ok := creds[keyClientId]; ok {
-			ps.Configuration[keyClientId] = v
-		}
-		if v, ok := creds[keyClientSecret]; ok {
-			ps.Configuration[keyClientSecret] = v
-		}
-		if v, ok := creds[keyUsername]; ok {
-			ps.Configuration[keyUsername] = v
-		}
-		if v, ok := creds[keyPassword]; ok {
-			ps.Configuration[keyPassword] = v
-		}
-		if v, ok := creds[keyRealm]; ok {
-			ps.Configuration[keyRealm] = v
-		}
-		if v, ok := creds[keyInitialLogin]; ok {
-			ps.Configuration[keyInitialLogin] = v
-		}
-		if v, ok := creds[keyClientTimeout]; ok {
-			ps.Configuration[keyClientTimeout] = v
-		}
-		if v, ok := creds[keyInitialLogin]; ok {
-			ps.Configuration[keyInitialLogin] = v
-		}
-		if v, ok := creds[keyTLSInsecureSkipVerify]; ok {
-			ps.Configuration[keyTLSInsecureSkipVerify] = v
-		}
-		if v, ok := creds[keyRootCACertificate]; ok {
-			ps.Configuration[keyRootCACertificate] = v
-		}
-		if v, ok := creds[keyRedHatSSO]; ok {
-			ps.Configuration[keyRedHatSSO] = v
-		}
-		if v, ok := creds[keyAdditionalHeaders]; ok {
-			ps.Configuration[keyAdditionalHeaders] = v
-		}
+		configureProvider(creds, &ps)
 
 		return ps, nil
+	}
+}
+
+func configureProvider(creds map[string]string, ps *terraform.Setup) {
+	keys := []string{
+		keyURL,
+		keyBasePath,
+		keyClientID,
+		keyClientSecret,
+		keyUsername,
+		keyPassword,
+		keyRealm,
+		keyInitialLogin,
+		keyClientTimeout,
+		keyTLSInsecureSkipVerify,
+		keyRootCACertificate,
+		keyRedHatSSO,
+		keyAdditionalHeaders,
+	}
+
+	for _, key := range keys {
+		if v, ok := creds[key]; ok {
+			ps.Configuration[key] = v
+		}
 	}
 }
