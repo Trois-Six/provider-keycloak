@@ -10,15 +10,23 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/upbound/upjet-provider-template/apis/null/v1alpha1"
-	v1alpha1apis "github.com/upbound/upjet-provider-template/apis/v1alpha1"
-	v1beta1 "github.com/upbound/upjet-provider-template/apis/v1beta1"
+	v1alpha1 "github.com/trois-six/provider-keycloak/apis/default/v1alpha1"
+	v1alpha1group "github.com/trois-six/provider-keycloak/apis/group/v1alpha1"
+	v1alpha1keycloak "github.com/trois-six/provider-keycloak/apis/keycloak/v1alpha1"
+	v1alpha1openid "github.com/trois-six/provider-keycloak/apis/openid/v1alpha1"
+	v1alpha1realm "github.com/trois-six/provider-keycloak/apis/realm/v1alpha1"
+	v1alpha1apis "github.com/trois-six/provider-keycloak/apis/v1alpha1"
+	v1beta1 "github.com/trois-six/provider-keycloak/apis/v1beta1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1group.SchemeBuilder.AddToScheme,
+		v1alpha1keycloak.SchemeBuilder.AddToScheme,
+		v1alpha1openid.SchemeBuilder.AddToScheme,
+		v1alpha1realm.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
 	)

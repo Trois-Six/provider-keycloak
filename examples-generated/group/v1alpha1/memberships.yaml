@@ -1,0 +1,65 @@
+apiVersion: group.crd.alt/v1alpha1
+kind: Memberships
+metadata:
+  annotations:
+    meta.upbound.io/example-id: group/v1alpha1/memberships
+  labels:
+    testing.upbound.io/example-name: group_members
+  name: group-members
+spec:
+  forProvider:
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: group
+    membersRefs:
+    - name: user
+    realmIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: realm
+
+---
+
+apiVersion: keycloak.crd.alt/v1alpha1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: group/v1alpha1/memberships
+  labels:
+    testing.upbound.io/example-name: group
+  name: group
+spec:
+  forProvider:
+    name: my-group
+    realmIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: realm
+
+---
+
+apiVersion: keycloak.crd.alt/v1alpha1
+kind: Realm
+metadata:
+  annotations:
+    meta.upbound.io/example-id: group/v1alpha1/memberships
+  labels:
+    testing.upbound.io/example-name: realm
+  name: realm
+spec:
+  forProvider:
+    enabled: true
+    realm: my-realm
+
+---
+
+apiVersion: keycloak.crd.alt/v1alpha1
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: group/v1alpha1/memberships
+  labels:
+    testing.upbound.io/example-name: user
+  name: user
+spec:
+  forProvider:
+    realmId: ${keycloak_realm.realm.id}
+    username: my-user

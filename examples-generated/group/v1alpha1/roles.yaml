@@ -1,0 +1,104 @@
+apiVersion: group.crd.alt/v1alpha1
+kind: Roles
+metadata:
+  annotations:
+    meta.upbound.io/example-id: group/v1alpha1/roles
+  labels:
+    testing.upbound.io/example-name: group_roles
+  name: group-roles
+spec:
+  forProvider:
+    groupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: group
+    realmIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: realm
+    roleIds:
+    - ${keycloak_role.realm_role.id}
+    - ${keycloak_role.client_role.id}
+
+---
+
+apiVersion: keycloak.crd.alt/v1alpha1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: group/v1alpha1/roles
+  labels:
+    testing.upbound.io/example-name: group
+  name: group
+spec:
+  forProvider:
+    name: my-group
+    realmIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: realm
+
+---
+
+apiVersion: openid.crd.alt/v1alpha1
+kind: Client
+metadata:
+  annotations:
+    meta.upbound.io/example-id: group/v1alpha1/roles
+  labels:
+    testing.upbound.io/example-name: client
+  name: client
+spec:
+  forProvider:
+    accessType: BEARER-ONLY
+    clientId: client
+    enabled: true
+    name: client
+    realmIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: realm
+
+---
+
+apiVersion: keycloak.crd.alt/v1alpha1
+kind: Realm
+metadata:
+  annotations:
+    meta.upbound.io/example-id: group/v1alpha1/roles
+  labels:
+    testing.upbound.io/example-name: realm
+  name: realm
+spec:
+  forProvider:
+    enabled: true
+    realm: my-realm
+
+---
+
+apiVersion: keycloak.crd.alt/v1alpha1
+kind: Role
+metadata:
+  annotations:
+    meta.upbound.io/example-id: group/v1alpha1/roles
+  labels:
+    testing.upbound.io/example-name: client_role
+  name: client-role
+spec:
+  forProvider:
+    clientId: ${keycloak_client.client.id}
+    description: My Client Role
+    name: my-client-role
+    realmId: ${keycloak_realm.realm.id}
+
+---
+
+apiVersion: keycloak.crd.alt/v1alpha1
+kind: Role
+metadata:
+  annotations:
+    meta.upbound.io/example-id: group/v1alpha1/roles
+  labels:
+    testing.upbound.io/example-name: realm_role
+  name: realm-role
+spec:
+  forProvider:
+    description: My Realm Role
+    name: my-realm-role
+    realmId: ${keycloak_realm.realm.id}
